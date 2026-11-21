@@ -20,6 +20,18 @@ Latest: **0.9.0** (2026-11-21). Wait for events, read overlays, and know exactly
 
 macOS 14 or later, on Apple silicon or Intel. The universal build covers both architectures.
 
+With Homebrew:
+
+```sh
+brew tap tfoutrein/macpilot
+brew trust tfoutrein/macpilot      # recent Homebrew asks to trust third-party taps
+brew install macpilot
+macpilot setup-permissions         # Accessibility + Screen Recording
+macpilot doctor
+```
+
+Or by hand:
+
 ```sh
 V=0.9.0
 cd "$(mktemp -d)"

@@ -10,7 +10,7 @@ This repository only distributes the binaries. It contains no source code.
 <!-- releases:begin -->
 ## Releases
 
-Latest: **0.8.0** (2026-11-21). Electron apps and very large accessibility trees.
+Latest: **0.9.0** (2026-11-21). Wait for events, read overlays, and know exactly what an action did.
 
 - What each version brings: [CHANGELOG.md](CHANGELOG.md).
 - Notes and downloads: [Releases](https://github.com/tfoutrein/macpilot-releases/releases).
@@ -21,7 +21,7 @@ Latest: **0.8.0** (2026-11-21). Electron apps and very large accessibility trees
 macOS 14 or later, on Apple silicon or Intel. The universal build covers both architectures.
 
 ```sh
-V=0.8.0
+V=0.9.0
 cd "$(mktemp -d)"
 curl -fsSLO "https://github.com/tfoutrein/macpilot-releases/releases/download/v$V/macpilot-$V-universal.tar.gz"
 curl -fsSLO "https://github.com/tfoutrein/macpilot-releases/releases/download/v$V/macpilot-$V-universal.tar.gz.sha256"

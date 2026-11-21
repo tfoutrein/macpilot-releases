@@ -8,6 +8,36 @@ What each macpilot release brings, newest first.
      public README). Then ### Highlights, ### Changed (what an existing user may notice),
      ### Fixed, ### Known limits as needed. User-facing only: no internal issue numbers, no paths. -->
 
+## 0.9.0 — 2026-11-21
+
+Wait for events, read overlays, and know exactly what an action did.
+
+### Highlights
+- **Wait for an event without knowing its title**: `wait --event window-opened`,
+  `window-closed`, `surface-appeared`, `surface-dismissed`, `app-launched`, `app-terminated` or
+  `focus-changed`. The result lists what changed (`changes`: title, type, pid…). In a `run`
+  scenario, a `wait` step right after an action takes its baseline before that action, so a
+  window opened by the click is caught. From the command line, start the wait before the
+  trigger.
+- **Overlays**: `snapshot --surface menu|sheet|popover|alert` reads only that overlay (alerts
+  report their message); `not_found` when none is open.
+- **Detailed action results**: every action now returns
+  - `steps`: what it actually did, step by step — label, mechanism (`ax` accessibility call,
+    `pid_event` keys posted to the process, `hid` system events), result, and whether its
+    effect was verified; a fallback appears as its own step;
+  - `post_state`: the target read back after the action (`value`, `checked`, `selected`,
+    `expanded`, `focused`, `enabled`, or `exists: false`); password fields are masked;
+  - `surfaces`: the menus, sheets, popovers and alerts open after the action (~10-25 ms).
+- **More wait conditions**: `wait --on … --predicate actionable` (the same checks as `click-at`, without
+  acting), `wait --text … --count N` (exactly N matching lines, on a complete read).
+
+### Changed
+- `run` copies `steps`, `post_state` and `surfaces` into each step of its result. `did` is kept.
+
+### Fixed
+- `click-xy --polite` refused before the gesture (target window not on top) reported
+  `clicked: true`: it now says `clicked: false`, `ok: false`, `delivery: not_delivered`.
+
 ## 0.8.0 — 2026-11-21
 
 Electron apps and very large accessibility trees.

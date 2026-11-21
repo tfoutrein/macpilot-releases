@@ -8,6 +8,34 @@ What each macpilot release brings, newest first.
      public README). Then ### Highlights, ### Changed (what an existing user may notice),
      ### Fixed, ### Known limits as needed. User-facing only: no internal issue numbers, no paths. -->
 
+## 1.0.0 — 2026-11-21
+
+Install with Homebrew, keep secrets out of logs, and know which app holds the permissions.
+
+### Highlights
+- **Homebrew**: `brew tap tfoutrein/macpilot && brew trust tfoutrein/macpilot && brew install
+  macpilot` (recent Homebrew asks to trust third-party taps). Each release also publishes
+  `checksums.txt` (SHA-256 of every archive).
+- **Secrets stay out of logs**: `type`, `paste` and `set-value` read their text from standard
+  input with `--stdin`, so it never appears in the process list or the shell history. A `run`
+  step marked `"sensitive": true` (and any `password`, `token` or `secret` key) is masked as
+  `•••` in results, reports and the MCP log. Password fields read back as `•••`.
+- **The guide ships inside the binary**: `macpilot skills list` and `macpilot skills get
+  [--json]` print the agent guide matching this exact version; MCP clients get it with the
+  read-only `skills_get` tool.
+- **Permissions, explained**: macOS grants Accessibility and Screen Recording to the app that
+  launched macpilot (Terminal, iTerm, VS Code, an MCP host…), not to macpilot itself. `doctor`
+  now names that app (`permission_holder`) and gives a `hint` saying what to enable;
+  `setup-permissions --guide` opens the right System Settings panes.
+
+### Changed
+- `setup-permissions` reads Screen Recording again in a fresh process, so a grant given while it
+  runs is reported (macOS caches the answer per process).
+
+### Fixed
+- `doctor` named macpilot itself instead of the host app when that app had been updated on disk
+  while it was running.
+
 ## 0.9.0 — 2026-11-21
 
 Wait for events, read overlays, and know exactly what an action did.

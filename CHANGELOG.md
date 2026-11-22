@@ -8,6 +8,45 @@ What each macpilot release brings, newest first.
      public README). Then ### Highlights, ### Changed (what an existing user may notice),
      ### Fixed, ### Known limits as needed. User-facing only: no internal issue numbers, no paths. -->
 
+## 1.1.0 — 2026-11-22
+
+Companion mode (preview): ask in plain words in a floating panel and watch an agent drive your Mac, step by step.
+
+### Highlights
+- **Companion mode**: `macpilot companion` opens a floating panel. You write (or dictate) a
+  request; an agent, Claude Code or Codex, drives the Mac with macpilot's tools and nothing else
+  (no shell, no file writes, no web outside the apps it drives). Every step appears in an activity
+  feed, in French, with its outcome; each turn ends with « Qu’est-ce qu’on fait maintenant ? » and
+  the conversation keeps its context. One request can span several apps (read a page in Safari,
+  write in TextEdit).
+- **You see what it does**: before each action, a halo frames the element about to be touched and
+  a ghost pointer travels to it; your own cursor never moves. An inner glow frames the window of
+  the app being driven, and the app comes to the front so you watch it happen.
+- **You keep control**: ⌥Space shows or hides the panel; Stop (or Escape) ends the turn at once; a
+  message written during a turn reaches the agent at its next step; sending, deleting, paying,
+  publishing and anything in a terminal wait for your Oui in the panel. The companion pauses as
+  soon as you use your mouse or keyboard (only your own hardware input counts) and resumes on
+  « Reprendre ». The panel itself is yours: the agent cannot click it.
+- **Two brains**: `--brain claude|codex` and `--model`, or pick both in the panel between two
+  turns. A new model keeps the conversation; a new brain starts a new one.
+- **Clear errors**: when the agent fails (not logged in, usage limit, no network, unknown model),
+  the panel says why and what to do in one sentence, and the next request goes on. A locked screen
+  or a missing permission is said too, with `macpilot doctor` when it helps. Every turn is kept in
+  a daily journal, secrets masked.
+
+### Changed
+- Two new commands: `companion`, and `confirm` (used by the agent inside the companion to ask you
+  Oui/Non). Outside the companion, every other command behaves exactly as in 1.0.0.
+- MCP: inside the companion only, the server also offers a `confirm` tool, and an action may wait
+  up to 10 minutes for your answer.
+
+### Known limits
+- Preview: the panel and the feed are in French.
+- The companion needs Claude Code or Codex installed and logged in on this Mac.
+- Codex cannot read a message during its turn: your correction reaches it when its next action is
+  refused, as with Claude Code.
+- Automatic pause is off in background mode (`--background`), which tests and agents use.
+
 ## 1.0.0 — 2026-11-21
 
 Install with Homebrew, keep secrets out of logs, and know which app holds the permissions.

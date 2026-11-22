@@ -10,7 +10,7 @@ This repository only distributes the binaries. It contains no source code.
 <!-- releases:begin -->
 ## Releases
 
-Latest: **1.0.0** (2026-11-21). Install with Homebrew, keep secrets out of logs, and know which app holds the permissions.
+Latest: **1.1.0** (2026-11-22). Companion mode (preview): ask in plain words in a floating panel and watch an agent drive your Mac, step by step.
 
 - What each version brings: [CHANGELOG.md](CHANGELOG.md).
 - Notes and downloads: [Releases](https://github.com/tfoutrein/macpilot-releases/releases).
@@ -33,7 +33,7 @@ macpilot doctor
 Or by hand:
 
 ```sh
-V=1.0.0
+V=1.1.0
 cd "$(mktemp -d)"
 curl -fsSLO "https://github.com/tfoutrein/macpilot-releases/releases/download/v$V/macpilot-$V-universal.tar.gz"
 curl -fsSLO "https://github.com/tfoutrein/macpilot-releases/releases/download/v$V/macpilot-$V-universal.tar.gz.sha256"
